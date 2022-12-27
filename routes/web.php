@@ -87,7 +87,7 @@ Route::get('/', function(){
 
 
         foreach($menus as $menu){
-
+            // Menghitung total seluruh makanan per bulan
             if($menu->kategori == 'makanan'){
                 foreach($transaksis as $transaksi){
                     $bulan = date('n', strtotime($transaksi->tanggal));
@@ -96,7 +96,9 @@ Route::get('/', function(){
                         $totalMenu[$menu->kategori][$bulan] = $totalMenu[$menu->kategori][$bulan] + $transaksi->total;
                     }
                 }
-            }else{
+            }
+            // Menghitung total seluruh minuman per bulan
+            else{
                 foreach($transaksis as $transaksi){
                     $bulan = date('n', strtotime($transaksi->tanggal));
 
