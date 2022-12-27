@@ -22,8 +22,8 @@
                         <div class="col-2">
                             <select class="form-control" name="tahun">
                                 <option value="">Pilih Tahun</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
+                                <option value="2021" @isset($tahun) @selected($tahun == 2021) @endisset>2021</option>
+                                <option value="2022" @isset($tahun) @selected($tahun == 2022) @endisset>2022</option>
                             </select>
                         </div>
                         <div class="col-8">
@@ -69,447 +69,60 @@
                             <tr>
                                 <td class="table-secondary" colspan="14"><b>Makanan</b></td>
                             </tr>
-                            <tr>
-                                <td>{{ $menu[0]->menu }}</td>
+                            @foreach ($menus as $menu)
+                                @if($menu->kategori == 'makanan')
+                                    <tr>
+                                        <td>{{ $menu->menu }}</td>
+                                        @for ($i = 1; $i <= 12 ; $i++)
+                                        <td style="text-align: right;">
+                                            {{ $hasil[$menu->menu][$i] }}
+                                        </td>
+                                        @endfor
+                                        <td style="text-align: right;"><b>{{ $totalMenu[$menu->menu] }}</b></td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            <tr class="table-dark">
+                                <td><b>Total Makanan</b></td>
+                                @for($i = 1; $i <= 12 ; $i++)
                                 <td style="text-align: right;">
-                                    {{ $total_1_jan }}
+                                    <b>{{ $totalMenu['makanan'][$i] }}</b>
                                 </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_1_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_1 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[1]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_2_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_2 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[2]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_3_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_3 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[3]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_4_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_4 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[4]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_5_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_5 }}</b></td>
+                                @endfor
+                                <td style="text-align: right;"><b>{{ $totalMenuAll['makanan'] }}</b></td>
                             </tr>
                             <tr>
                                 <td class="table-secondary" colspan="14"><b>Minuman</b></td>
                             </tr>
-                            <tr>
-                                <td>{{ $menu[5]->menu }}</td>
+                            @foreach ($menus as $menu)
+                                @if($menu->kategori == 'minuman')
+                                    <tr>
+                                        <td>{{ $menu->menu }}</td>
+                                        @for ($i = 1; $i <= 12 ; $i++)
+                                        <td style="text-align: right;">
+                                            {{ $hasil[$menu->menu][$i] }}
+                                        </td>
+                                        @endfor
+                                        <td style="text-align: right;"><b>{{ $totalMenu[$menu->menu] }}</b></td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            <tr class="table-dark">
+                                <td><b>Total Minuman</b></td>
+                                @for($i = 1; $i <= 12 ; $i++)
                                 <td style="text-align: right;">
-                                    {{ $total_6_jan }}
+                                    <b>{{ $totalMenu['minuman'][$i] }}</b>
                                 </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_6_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_6 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[6]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_7_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_7 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[7]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_8_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_8 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[8]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_9_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_9 }}</b></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $menu[9]->menu }}</td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_jan }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_feb }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_mar }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_apr }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_mei }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_jun }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_jul }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_ags }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_sep }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_okt }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_nov }}
-                                </td>
-                                <td style="text-align: right;">
-                                    {{ $total_10_des }}
-                                </td>
-                                <td style="text-align: right;"><b>{{ $total_10 }}</b></td>
+                                @endfor
+                                <td style="text-align: right;"><b>{{ $totalMenuAll['minuman'] }}</b></td>
                             </tr>
                             <tr class="table-dark">
                                 <td><b>Total</b></td>
+                                @for($i = 1; $i <= 12 ; $i++)
                                 <td style="text-align: right;">
-                                    <b>{{ $jan_total }}</b>
+                                    <b>{{ $totalBulan[$i] }}</b>
                                 </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $feb_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $mar_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $apr_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $mei_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $jun_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $jul_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $ags_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $sep_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $okt_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $nov_total }}</b>
-                                </td>
-                                <td style="text-align: right;">
-                                    <b>{{ $des_total }}</b>
-                                </td>
+                                @endfor
                                 <td style="text-align: right;"><b>{{ $total }}</b></td>
                             </tr>
                         </tbody>
