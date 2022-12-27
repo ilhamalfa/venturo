@@ -32,7 +32,9 @@ function transaksi($tahun){
 }
 
 Route::get('/', function(){
-    if(isset($_GET['tahun'])){
+    if($_GET['tahun'] == ""){
+        return view('index.intermediate');
+    }else{
         $tahun = $_GET['tahun'];
         $menus = menu();
 
@@ -132,6 +134,4 @@ Route::get('/', function(){
             'totalMenuAll' => $totalMenuAll
         ]);
     }
-
-    return view('index.intermediate');
 });
